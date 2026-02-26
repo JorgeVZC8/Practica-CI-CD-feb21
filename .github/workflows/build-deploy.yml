@@ -78,7 +78,7 @@ jobs:
             -t ${{ env.REGISTRY }}/${{ secrets.PROJECT_ID }}/${{ env.REPO }}/agent-frontend:${{ github.sha }} \
             -t ${{ env.REGISTRY }}/${{ secrets.PROJECT_ID }}/${{ env.REPO }}/agent-frontend:latest \
             frontend/
-
+            
       - name: Trivy scan frontend image
         uses: aquasecurity/trivy-action@0.33.1
         with:
@@ -87,6 +87,7 @@ jobs:
           exit-code: '1'
           severity: 'CRITICAL,HIGH'
           ignore-unfixed: true
+      
 
       - name: Push frontend image
         run: |
